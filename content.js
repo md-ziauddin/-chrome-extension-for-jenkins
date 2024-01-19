@@ -1,17 +1,28 @@
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  if (request.action === "getBranchName") {
-    var branchButton = document.querySelector(".js-source-branch-copy");
+// Function to open Jenkins URL in a new tab
+function openJenkinsTab(branchName) {
+  var jenkinsUrl = "https://jenkins.com/controller9/jobs/";
+  var urlWithBranch = jenkinsUrl + encodeURIComponent(branchName);
+  window.open(urlWithBranch, "_blank");
+}
 
-    if (branchButton) {
-      // Get the branch name from the data-clipboard-text attribute
-      var branchName = branchButton.getAttribute("data-clipboard-text");
+// Extract branch name from the data-clipboard-text attribute
+var sourceBranchButton = document.querySelector(".js-source-branch-copy");
+if (sourceBranchButton) {
+  var branchName = sourceBranchButton.getAttribute("data-clipboard-text");
 
-      sendResponse({ branchName: branchName });
-    } else {
-      sendResponse({ branchName: "" }); // Return an empty string if the button is not found
-    }
+  // Create the "Open Jenkins" button
+  var openJenkinsButton = document.createElement("button");
+  openJenkinsButton.className =
+    "gl-button btn btn-md btn-default has-tooltip js-open-jenkins-button";
+  openJenkinsButton.innerHTML =
+    '<span class="gl-button-text">Open Jenkins</span>';
 
-    // Return true to indicate that sendResponse will be called asynchronously
-    return true;
-  }
-});
+  // Append the button to the desired location
+  var actionsContainer = document.querySelector(".detail-page-header-actions");
+  actionsContainer.appendChild(openJenkinsButton);
+
+  // Add click event listener to the new button
+  openJenkinsButton.addEventListener("click", function () {
+    openJenkinsTab(branchName);
+  });
+}
