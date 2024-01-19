@@ -1,6 +1,6 @@
 // Function to open Jenkins URL in a new tab
 function openJenkinsTab(branchName) {
-  var jenkinsUrl = "https://jenkins.com/controller9/jobs/";
+  var jenkinsUrl = "https://jenkins.com/controller9/jobs/"; // Update the jenkinsUrl with needed Jenkins Url
   var urlWithBranch = jenkinsUrl + encodeURIComponent(branchName);
   window.open(urlWithBranch, "_blank");
 }
