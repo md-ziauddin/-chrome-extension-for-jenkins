@@ -1,0 +1,23 @@
+.mr-widget-section > .mr-widget-content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.mr-widget-section > .mr-widget-content > .ci-widget.media {
+  flex: 1;
+}
+
+.js-open-jenkins-button {
+  box-shadow: none;
+  padding-top: 0;
+  border: none;
+  background: white;
+}
+
+.js-open-jenkins-button > img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
